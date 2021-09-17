@@ -17,11 +17,7 @@ def iscardoracc(src):
         acc = "**" + src[:-5:-1]
         return(acc)
     else:
-        #to digit
-        #num = filter(str.isdigit, src)
-        #print('NUM',num,type(src))
         m = re.search(r"\d", src)
-        #print(m,type(m))
         card = 0
         if m is not None:
             num_index = m.start()
@@ -46,12 +42,15 @@ for i in reversed(data):
         if i['state'] == 'EXECUTED' and c <= 5: #85 op
             dt = convert_date(i)
             print(dt, i['description'])
+            # FROM -> TO
+            # SUM CURRENCY
             if 'from' in i:
-                print("froms", i['from'])
                 src = iscardoracc(i['from'])
-                print(src)
+            else:
+                src = '<from>'
             if 'to' in i:
-                print("to->",i['to'])
+                src2 = iscardoracc(i['to'])
+            print(src, src2)
             print()
             c += 1
 
