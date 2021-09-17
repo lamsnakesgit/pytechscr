@@ -21,7 +21,7 @@ def iscardoracc(src):
         card = 0
         if m is not None:
             num_index = m.start()
-            card = src[num_index:num_index + 6:] + 6 * "*" + src[:-5:-1]
+            card = src[num_index:num_index + 4:] + " " + src[num_index + 4:num_index + 6:] + 2 * "*" + " " + 4 * "*" + " "+ src[:-5:-1]
         return(card) #last 4 digits
 #    for a in reversed(i):
 #        print(a)
@@ -42,7 +42,7 @@ for i in reversed(data):
         if i['state'] == 'EXECUTED' and c <= 5: #85 op
             dt = convert_date(i)
             print(dt, i['description'])
-            # FROM -> TO
+            # FROM -> TO card block by 4
             # SUM CURRENCY
             if 'from' in i:
                 src = iscardoracc(i['from'])
