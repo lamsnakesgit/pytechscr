@@ -3,7 +3,8 @@ import datetime
 import re
 #import dateutil
 
-def convert_date(i):
+# get dates obj, find max, 
+def latest_convert_date(i):
     datetimeobj = datetime.datetime.strptime(i['date'],"%Y-%m-%dT%H:%M:%S.%f")
     d = datetimeobj.strftime("%d.%m.%Y")
     #print(d,'\n')
@@ -35,15 +36,16 @@ with open('operations.json') as file:
 # what is 'last'? defined by time or place in list?
 # look at 'date' fields
 # format: date + desc + '\n' + from -> to \n + opAm=am+currency
-# if account = elif card = frmt 
+# if account = elif card = frmt
+# find latest date first
+ 
 c = 1
 for i in reversed(data):
     if i:
-        if i['state'] == 'EXECUTED' and c <= 5: #85 op
-            dt = convert_date(i)
-            print(dt, i['description'])
-            # FROM -> TO card block by 4
-            # SUM CURRENCY
+
+        if i['state'] == 'EXECUTED': # and c <= 5: #85 op
+            dt = latest_convert_date(i)
+            print(dt, i['description'], type(i))
             if 'from' in i:
                 src = iscardoracc(i['from'])
             else:
@@ -51,7 +53,6 @@ for i in reversed(data):
             if 'to' in i:
                 src2 = iscardoracc(i['to'])
             print(src, src2)
-            # SUM CURRENCE
             print(i['operationAmount']['amount'], i['operationAmount']['currency']['name'])
             print()
             c += 1
