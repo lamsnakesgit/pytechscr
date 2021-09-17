@@ -20,11 +20,12 @@ def iscardoracc(src):
         #to digit
         #num = filter(str.isdigit, src)
         #print('NUM',num,type(src))
-        m = re.match(r"\d", src)
+        m = re.search(r"\d", src)
+        #print(m,type(m))
         card = 0
         if m is not None:
             num_index = m.start()
-            card = src[num_index:6:] + 6 * "*" + src[:-5:-1]
+            card = src[num_index:num_index + 6:] + 6 * "*" + src[:-5:-1]
         return(card) #last 4 digits
 #    for a in reversed(i):
 #        print(a)
