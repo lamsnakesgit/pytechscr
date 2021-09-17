@@ -51,6 +51,8 @@ for i in reversed(data):
             if 'to' in i:
                 src2 = iscardoracc(i['to'])
             print(src, src2)
+            # SUM CURRENCE
+            print(i['operationAmount']['amount'], i['operationAmount']['currency']['name'])
             print()
             c += 1
 
