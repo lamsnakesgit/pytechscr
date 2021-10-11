@@ -1,4 +1,4 @@
-# pytechscrtesttask-scripter
+# python script parsing json
 - date - информация о дате совершения операции
 - state - статус перевода (EXECUTED - выполнена, CANCELED - отменена)
 - operationAmount - сумма операции и валюта
